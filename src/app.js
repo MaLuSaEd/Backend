@@ -13,6 +13,7 @@ const app = express();
 // habdelbars config --------------------------------------------------------
 
 import handlebars from 'express-handlebars';
+import cartsRouter from './routes/carts.router.js';
 app.engine('handlebars', handlebars.engine());
 app.set('views', path.dirname(__dirname) + '/views');
 app.set('view engine', 'handlebars');
@@ -35,35 +36,12 @@ app.use((req,res,next) => {
 
 app.use('/api/products', productsRouter) // endpoint products
 
-// app.get('/products', (req,res) => {
-    // const {limit} = req.query;
-// 
-    // if (limit < 0) return res.status(400).send('Limit negativo') 
-// 
-    // const arrayProducts = pm.getProducts().slice(0,limit)
-    // res.status(200).json({
-        // status:'succes',
-        // payload : arrayProducts
-    // })
-// });
-
-// app.get('/products/:pid', (req,res) => {
-    // 
-    // const {pid} = req.params;
-    // const arrayProducts = pm.getProducts();
-    // const product = arrayProducts.find(product => product.id == pid);
-    // 
-    // if(!product) return res.status(400).send('No se encontro el producto`')
-// 
-    // res.status(200).json({
-        // status:'succes',
-        // producto : product
-    // })
-// });
 
 app.use('/api/usuarios', userRouter) // endpoint products
 
-app.use('/views', viewsRouter)
+app.use('/api/carts', cartsRouter); //endpoint carrito
+
+app.use('/views', viewsRouter);     //endpoint views
 
 
 app.use((err,req,res,next) => {         // No estoy usando el next asi que este middlewar

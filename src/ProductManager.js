@@ -1,6 +1,5 @@
 import fs from 'fs'
 
-//const fs = require('fs');
 const ruta = './files/Products.json';
 
 function haveProduct(products, title ){
@@ -39,6 +38,28 @@ class ProductManager{
     }
 
     addProduct(newProduct){
+
+    if(!newProduct.title){
+        console.log("Falta campo titulo")
+        return
+    } else if(!newProduct.description){
+        console.log("Falta campo description")
+        return
+    } else if(!newProduct.code){
+        console.log("Falta campo code")
+        return
+    }else if(!newProduct.price){
+        console.log("Falta campo price")
+        return
+    }else if(!newProduct.stock){
+        console.log("Falta campo stock")
+        return
+    }else if(!newProduct.category){
+        console.log("Falta campo category")
+        return
+    }else if(!newProduct.thumbnails){
+        newProduct.thumbnails = ""
+    }
 
     let products = this.getProducts();
         
@@ -81,7 +102,7 @@ class ProductManager{
 
     updateProduct(id, campo, nuevoValor){
         
-        const campos = {'title' : 1, 'description' : 1, 'price' : 1, 'thumbnail' : 1, 'code' :1, 'stock':1};
+        const campos = {"title":"","description":"","code": "","price": -1,"status":true,"stock": -1,"category":""};
 
 
         if (campo in campos){
@@ -96,7 +117,7 @@ class ProductManager{
             })
 
             if(encontrada){
-                products[index].campo = nuevoValor;
+                products[index][campo] = nuevoValor;
 
                 fs.unlinkSync(this.path);
 
@@ -139,99 +160,3 @@ class ProductManager{
 }
 
 export default ProductManager;
-
-
-let p1 = {
-        title: "producto prueba",
-        description: "Este es un producto prueba",
-        price:200,
-        thumbnail: "Sin imagen",
-        code: "abc123",
-        stock:25
-}
-
-
-let p2 = {
-    title: "producto prueba 2",
-    description: "Este es un producto prueba 2",
-    price:2000,
-    thumbnail: "Sin imagen",
-    code: "abc1234",
-    stock:2
-}
-
-let p3 = {
-    title: "producto prueba 3",
-    description: "Este es un producto prueba",
-    price:20,
-    thumbnail: "Sin imagen",
-    code: "abc123",
-    stock:254
-}
-
-
-let p4 = {
-title: "producto prueba 4",
-description: "Este es un producto prueba 4",
-price:2,
-thumbnail: "Sin imagen",
-code: "abc34",
-stock:1
-}
-
-let p5 = {
-    title: "producto prueba 5",
-    description: "Este es un producto prueba 5",
-    price:23,
-    thumbnail: "Sin imagen",
-    code: "hola",
-    stock:2
-}
-
-
-let p6 = {
-title: "producto prueba 6",
-description: "Este es un producto prueba 6",
-price:2000,
-thumbnail: "Sin imagen",
-code: "abc6",
-stock:6
-}
-
-
-let pm = new ProductManager(ruta);
-
-
-
-// pm.getProducts();
-
-//  pm.addProduct(p1);
-
-//pm.addProduct(p1);
-
-//  pm.addProduct(p2);
-// 
-//  pm.addProduct(p3);
-//  pm.addProduct(p4);
-//  pm.addProduct(p5);
-//  pm.addProduct(p6);
-
-// pm.getProducts();
-
-// pm.getProductById(3);
-
-// pm.updateProduct(1,'stock',26);
-
-// pm.deleteProduct(2);
-
-// pm.deleteProduct(10);
-
-// pm.deleteProduct(1);
-
-// console.log(pm.getProducts());
-
-
-
-
-
-
