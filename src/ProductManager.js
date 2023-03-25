@@ -201,6 +201,8 @@ stock:6
 
 let pm = new ProductManager(ruta);
 
+
+
 // pm.getProducts();
 
 //  pm.addProduct(p1);

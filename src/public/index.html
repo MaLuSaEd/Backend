@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Bienvenidx {{ nombre }} </h1>
+    <label>El pedido sera entregado a {{direccion}}</label>
+    <form style="display: flex; flex-direction: column; gap:0.5vh; " action="/api/products" method="POST" enctype="multipart/form-data">
+        <label> Name </label>
+        <input name="title">
+        <label> Description </label>
+        <input name="description">
+        <label> Price </label>
+        <input type="number" name="price">
+        <label> Thumbnail </label>
+        <input name="thumbnail">
+        <label> Subir Imagen </label>
+        <input type="file" name="file">
+        <label> Code </label>
+        <input name="code">
+        <label> Stock </label>
+        <input type="number" name="stock">
+        <input type="submit">
+    </form>
+    <script src = 'index.js'></script>
+</body>
+</html>

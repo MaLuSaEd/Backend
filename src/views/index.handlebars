@@ -1,0 +1,16 @@
+<div>
+    <h1> Hola {{user.name}} - {{user.last_name}}, que gusto verte!!</h1>
+    {{#if isAdmin}}
+        <h3>Podes ver los usuarios</h3>
+        {{#each users}}
+            <div>
+                <p>{{this.name}} {{this.last_name}}</p>
+                <p>{{this.genre}}</p>
+            </div>
+        {{/each}}
+    {{else}}
+        <h3>No tienes permiso de ver los usuarios</h3>
+    {{/if}}
+</div>
+
+<script src="/static/js/index.js"></script>
