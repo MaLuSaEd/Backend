@@ -6,12 +6,6 @@ const userRouter = Router();
 
 let users = []
 
-const mid1 = (req , res, next) => {
-    req.dato1 = 'dato 1';
-    next();
-}
-
-
 // GET http://localhost:xxxx /api/usuarios/ 
 userRouter.get('/', (req,res) => {
 
