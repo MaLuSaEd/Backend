@@ -3,6 +3,7 @@ import ProductManager from './ProductManager.js'
 import productsRouter from './routes/products.router.js';
 import __dirname from './utils/utils.js';
 import path from 'path';
+import { Socket } from 'socket.io';
 
 
 
