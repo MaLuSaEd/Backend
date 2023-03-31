@@ -9,6 +9,10 @@ const users = [
     {id : '5', name : 'nombre 5', last_name : 'apellido 5', genre: 'M'}
 ]
 
+viewsRouter.get('/', (req,res) =>{
+    res.render('chat', {})
+})
+
 viewsRouter.get('/usuarios', (req,res) => {
     let testUser = {
         name: 'Fede',
@@ -24,7 +28,7 @@ viewsRouter.get('/usuarios', (req,res) => {
 })
 
 viewsRouter.get('/register', (req,res) => {
-    res.render('register',{})
+    res.render('register', {})
 })
 
 

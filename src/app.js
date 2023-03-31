@@ -5,8 +5,7 @@ import userRouter from './routes/users.router.js';
 import viewsRouter from './routes/views.router.js';
 import __dirname from './utils/utils.js';
 import path from 'path';
-
-
+import { Server } from 'socket.io';
 
 const app = express();
 
@@ -51,6 +50,13 @@ app.use((err,req,res,next) => {         // No estoy usando el next asi que este 
 
 
 const port = 8080;
-app.listen(port, () => {
+const httpServer = app.listen(port, () => {
     console.log('Servidor escuchando en el puerto ' + port)
+})
+
+//instanciando un socket server
+const socketServer = new Server(httpServer);
+
+socketServer.on('connection', socket =>{
+    console.log('Nuevo Cliente conectado')
 })
