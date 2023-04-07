@@ -5,9 +5,28 @@ import userRouter from './routes/users.router.js';
 import viewsRouter from './routes/views.router.js';
 import __dirname from './utils/utils.js';
 import path from 'path';
-import { Server } from 'socket.io';
+import { Server } from 'socket.io'; // Este import es nuevo, este server se creara a partir del server HTTP
 
 const app = express();
+const port = 8080;
+const httpServer = app.listen(port, ()=>{
+    console.log('Servidor escuchando en el puerto ' + port)
+})
+
+//instanciando un socket server
+const socketServer = new Server(httpServer);
+
+socketServer.on('connection', socket =>{
+    console.log('Nuevo Cliente conectado')
+
+    socket.on('', dataCliente => {
+        console.log(dataCliente)
+    })
+
+    socket.emit('evento-para-scoket-individual','Este mensaje solo lo deberecibir el socket')
+    socket.broadcast.emit('evento-para-todos-menos-para-el-socket-actual', 'Este evento lo veran todos los socket conectados, menos el actual ')
+    socketServer.emit('evento-para-todos', 'Este lo reciben todos los socket')
+})
 
 // habdelbars config --------------------------------------------------------
 
@@ -49,14 +68,3 @@ app.use((err,req,res,next) => {         // No estoy usando el next asi que este 
 })
 
 
-const port = 8080;
-const httpServer = app.listen(port, () => {
-    console.log('Servidor escuchando en el puerto ' + port)
-})
-
-//instanciando un socket server
-const socketServer = new Server(httpServer);
-
-socketServer.on('connection', socket =>{
-    console.log('Nuevo Cliente conectado')
-})
